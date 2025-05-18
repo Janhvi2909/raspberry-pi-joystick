@@ -1,0 +1,279 @@
+.app {
+  margin: 0;
+  padding: 20px;
+  font-family: Arial, sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: #f0f0f0;
+  min-height: 100vh;
+  box-sizing: border-box;
+  overflow-x: hidden;
+  width: 100%;
+  position: fixed;
+}
+
+.joystick-container {
+  width: 200px;
+  height: 200px;
+  position: relative;
+  margin: 20px;
+  touch-action: none;
+  user-select: none;
+  -webkit-user-select: none;
+  -webkit-touch-callout: none;
+}
+
+/* Base rings for speed controller */
+.speed-base {
+  background: linear-gradient(to bottom, #4CAF50, #2E7D32);
+  border-radius: 50%;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  box-shadow: inset 0 2px 5px rgba(255,255,255,0.3), 
+              inset 0 -2px 5px rgba(0,0,0,0.3);
+}
+
+.speed-ring-1 {
+  position: absolute;
+  width: 85%;
+  height: 85%;
+  top: 7.5%;
+  left: 7.5%;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.1);
+  box-shadow: inset 0 1px 3px rgba(0,0,0,0.2);
+}
+
+.speed-ring-2 {
+  position: absolute;
+  width: 70%;
+  height: 70%;
+  top: 15%;
+  left: 15%;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.05);
+  box-shadow: inset 0 1px 3px rgba(0,0,0,0.1);
+}
+
+/* Base rings for direction controller */
+.direction-base {
+  background: linear-gradient(45deg, #2196F3, #1565C0);
+  border-radius: 50%;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  box-shadow: inset 0 2px 5px rgba(255,255,255,0.3), 
+              inset 0 -2px 5px rgba(0,0,0,0.3);
+}
+
+.direction-ring-1 {
+  position: absolute;
+  width: 85%;
+  height: 85%;
+  top: 7.5%;
+  left: 7.5%;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.1);
+  box-shadow: inset 0 1px 3px rgba(0,0,0,0.2);
+}
+
+.direction-ring-2 {
+  position: absolute;
+  width: 70%;
+  height: 70%;
+  top: 15%;
+  left: 15%;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.05);
+  box-shadow: inset 0 1px 3px rgba(0,0,0,0.1);
+}
+
+.joystick-knob {
+  width: 80px;
+  height: 80px;
+  background: #fff;
+  border-radius: 50%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  cursor: pointer;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.3),
+              inset 0 -2px 5px rgba(0,0,0,0.1),
+              inset 0 2px 5px rgba(255,255,255,0.5);
+  transition: transform 0.2s ease-out, 
+              background-color 0.2s,
+              box-shadow 0.2s;
+}
+
+.joystick-knob.active {
+  background: #f0f0f0;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.2),
+              inset 0 -1px 3px rgba(0,0,0,0.1),
+              inset 0 1px 3px rgba(255,255,255,0.3);
+  transition: none;
+}
+
+.status {
+  margin: 10px;
+  padding: 10px 20px;
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  min-width: 150px;
+  text-align: center;
+  font-weight: 500;
+}
+
+h1 {
+  color: #333;
+  margin-bottom: 30px;
+  text-shadow: 0 1px 2px rgba(0,0,0,0.1);
+}
+
+h2 {
+  color: #fff;
+  margin: 10px 0;
+  text-shadow: 0 2px 4px rgba(0,0,0,0.2);
+  font-size: 1.2em;
+}
+
+.controls-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  gap: 40px;
+  width: 100%;
+  max-width: 1000px;
+  flex-wrap: wrap;
+  padding: 10px;
+  box-sizing: border-box;
+}
+
+.control-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.1);
+  padding: 20px;
+  border-radius: 15px;
+  backdrop-filter: blur(5px);
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1),
+              inset 0 1px 1px rgba(255,255,255,0.1);
+}
+
+/* Vertical guide line for speed controller */
+.speed-guide {
+  position: absolute;
+  top: 10%;
+  left: 50%;
+  height: 80%;
+  width: 2px;
+  background: rgba(255, 255, 255, 0.3);
+  transform: translateX(-50%);
+  box-shadow: 0 0 4px rgba(255,255,255,0.2);
+}
+
+/* Crosshair guide for direction controller */
+.direction-guide-x {
+  position: absolute;
+  top: 50%;
+  left: 10%;
+  width: 80%;
+  height: 2px;
+  background: rgba(255, 255, 255, 0.3);
+  transform: translateY(-50%);
+  box-shadow: 0 0 4px rgba(255,255,255,0.2);
+}
+
+.direction-guide-y {
+  position: absolute;
+  top: 10%;
+  left: 50%;
+  height: 80%;
+  width: 2px;
+  background: rgba(255, 255, 255, 0.3);
+  transform: translateX(-50%);
+  box-shadow: 0 0 4px rgba(255,255,255,0.2);
+}
+
+.reconnect-button {
+  margin-top: 20px;
+  padding: 10px 20px;
+  background: #2196F3;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1em;
+  font-weight: 500;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+  transition: background-color 0.2s, transform 0.1s;
+}
+
+.reconnect-button:hover {
+  background: #1976D2;
+}
+
+.reconnect-button:active {
+  transform: translateY(1px);
+  box-shadow: 0 1px 2px rgba(0,0,0,0.2);
+}
+
+@media (max-width: 768px) {
+  .app {
+    padding: 10px;
+    transform: none;
+    width: 100%;
+    height: 100vh;
+    position: fixed;
+    overflow: hidden;
+  }
+
+  .controls-container {
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: center;
+    gap: 10px;
+    padding: 5px;
+    width: 100%;
+  }
+
+  .joystick-container {
+    width: 120px;
+    height: 120px;
+  }
+
+  .joystick-knob {
+    width: 45px;
+    height: 45px;
+  }
+
+  h1 {
+    font-size: 20px;
+    margin-bottom: 10px;
+  }
+
+  h2 {
+    font-size: 14px;
+    margin: 5px 0;
+  }
+
+  .status {
+    font-size: 12px;
+    padding: 6px;
+    min-width: 100px;
+    margin: 5px;
+  }
+
+  .control-section {
+    padding: 8px;
+  }
+
+  .reconnect-button {
+    font-size: 14px;
+    padding: 8px 16px;
+  }
+} 
